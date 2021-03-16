@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/10/2014 05:47:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.dynamic.entidade.Funcionario" table="funcionario" catalog="energia">
+        <composite-id name="id" class="br.com.dynamic.entidade.FuncionarioId">
+            <key-property name="idFuncionario" type="int">
+                <column name="idFuncionario" />
+            </key-property>
+            <key-property name="usuarioIdUsuario" type="int">
+                <column name="Usuario_idUsuario" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="usuario" class="br.com.dynamic.entidade.Usuario" update="false" insert="false" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="80" not-null="true" unique="true" />
+        </property>
+        <property name="especialidade" type="string">
+            <column name="especialidade" length="50" />
+        </property>
+        <set name="ordems" table="ordem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Funcionario_idFuncionario" not-null="true" />
+                <column name="Funcionario_Usuario_idUsuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.dynamic.entidade.Ordem" />
+        </set>
+    </class>
+</hibernate-mapping>

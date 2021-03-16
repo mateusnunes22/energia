@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/10/2014 05:47:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.dynamic.entidade.Conexao" table="conexao" catalog="energia">
+        <id name="idConexao" type="java.lang.Integer">
+            <column name="idConexao" />
+            <generator class="identity" />
+        </id>
+        <property name="ip" type="string">
+            <column name="ip" length="40" not-null="true" />
+        </property>
+        <property name="porta" type="string">
+            <column name="porta" length="10" not-null="true" />
+        </property>
+        <property name="baseDeDados" type="string">
+            <column name="baseDeDados" length="20" not-null="true" />
+        </property>
+        <property name="ssid" type="string">
+            <column name="ssid" length="40" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="40" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

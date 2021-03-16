@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/10/2014 05:47:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.dynamic.entidade.Ordem" table="ordem" catalog="energia">
+        <composite-id name="id" class="br.com.dynamic.entidade.OrdemId">
+            <key-property name="idOrdem" type="int">
+                <column name="idOrdem" />
+            </key-property>
+            <key-property name="funcionarioIdFuncionario" type="int">
+                <column name="Funcionario_idFuncionario" />
+            </key-property>
+            <key-property name="funcionarioUsuarioIdUsuario" type="int">
+                <column name="Funcionario_Usuario_idUsuario" />
+            </key-property>
+            <key-property name="clienteIdCliente" type="int">
+                <column name="Cliente_idCliente" />
+            </key-property>
+            <key-property name="clienteUsuarioIdUsuario" type="int">
+                <column name="Cliente_Usuario_idUsuario" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="cliente" class="br.com.dynamic.entidade.Cliente" update="false" insert="false" fetch="select">
+            <column name="Cliente_idCliente" not-null="true" />
+            <column name="Cliente_Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="br.com.dynamic.entidade.Funcionario" update="false" insert="false" fetch="select">
+            <column name="Funcionario_idFuncionario" not-null="true" />
+            <column name="Funcionario_Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

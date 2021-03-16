@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/10/2014 05:47:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.dynamic.entidade.Cliente" table="cliente" catalog="energia">
+        <composite-id name="id" class="br.com.dynamic.entidade.ClienteId">
+            <key-property name="idCliente" type="int">
+                <column name="idCliente" />
+            </key-property>
+            <key-property name="usuarioIdUsuario" type="int">
+                <column name="Usuario_idUsuario" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="usuario" class="br.com.dynamic.entidade.Usuario" update="false" insert="false" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="idAtendimento" type="int">
+            <column name="atendimento_idAtendimento" not-null="false" />
+        </property>
+        <property name="nome" type="string">
+            <column name="nome" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="fone" type="string">
+            <column name="fone" length="20" unique="true" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="20" />
+        </property>
+        <property name="nascimento" type="date">
+            <column name="nascimento" length="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="30" />
+        </property>
+        <property name="retorno" type="string">
+            <column name="retorno" length="50" />
+        </property>
+        <property name="renovacao" type="string">
+            <column name="renovacao" length="50" />
+        </property>
+        <property name="fone2" type="string">
+            <column name="fone2" length="50" />
+        </property>
+        <property name="fone3" type="string">
+            <column name="fone3" length="11" />
+        </property>
+        <set name="ordems" table="ordem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Cliente_idCliente" not-null="true" />
+                <column name="Cliente_Usuario_idUsuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.dynamic.entidade.Ordem" />
+        </set>
+    </class>
+</hibernate-mapping>

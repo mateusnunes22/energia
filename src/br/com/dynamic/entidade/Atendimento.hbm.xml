@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/10/2014 05:47:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.dynamic.entidade.Atendimento" table="atendimento" catalog="energia">
+        <composite-id name="id" class="br.com.dynamic.entidade.AtendimentoId">
+            <key-property name="idAtendimento" type="int">
+                <column name="idAtendimento" />
+            </key-property>
+            <key-property name="usuarioIdUsuario" type="int">
+                <column name="Usuario_idUsuario" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="usuario" class="br.com.dynamic.entidade.Usuario" update="false" insert="false" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" not-null="true" />
+        </property>
+        <property name="ip" type="string">
+            <column name="ip" length="80" />
+        </property>
+        <property name="mac" type="string">
+            <column name="mac" length="80" unique="true" not-null="true" />
+        </property>
+        <property name="pagamento" type="java.lang.Float">
+            <column name="pagamento" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

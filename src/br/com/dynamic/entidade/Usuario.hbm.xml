@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/10/2014 05:47:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.dynamic.entidade.Usuario" table="usuario" catalog="energia">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeUsuario" type="string">
+            <column name="nomeUsuario" length="80" not-null="true" unique="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="80" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="60" not-null="true" />
+        </property>
+        <property name="perfil" type="string">
+            <column name="perfil" length="15" not-null="true" />
+        </property>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario_idUsuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.dynamic.entidade.Cliente" />
+        </set>
+        <set name="atendimentos" table="atendimento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario_idUsuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.dynamic.entidade.Atendimento" />
+        </set>
+        <set name="funcionarios" table="funcionario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario_idUsuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.dynamic.entidade.Funcionario" />
+        </set>
+    </class>
+</hibernate-mapping>
